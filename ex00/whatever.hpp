@@ -2,9 +2,31 @@
 #define WHATEVER_HPP
 
 template <typename T>
+void	swap(T &v1, T &v2)
+{
+	T aux;
 
-void	swap(T v1, T v2);
-T		min(T v1, T v2);
-T		max(T v1, T v2);
+	aux = v1;
+	v1 = v2;
+	v2 = aux;
+}
+
+template <typename T>
+T		min(T v1, T v2)
+{
+	if (v1 < v2)
+		return v1;
+	else
+		return v2;
+}
+
+template <typename T>
+T		max(T v1, T v2)
+{
+	if (v1 > v2)
+		return v1;
+	else
+		return v2;
+}
 
 #endif
