@@ -17,10 +17,19 @@ Array<T>::Array(unsigned int n)
 template <typename T>
 Array<T>::Array(const Array& copy)
 {
-	_data = new T[copy._len];
-	_len = copy._len
-	for (unsigned int i = 0; i < _len; i++)
-		_data[i] = copy._data[i];
+	if (this != copy)
+	{
+		_data = new T[copy._len];
+		_len = copy._len
+		for (unsigned int i = 0; i < _len; i++)
+			_data[i] = copy._data[i];
+	}
+}
+
+template <typename T>
+Array<T>::~Array()
+{
+	delete[] _data;
 }
 
 template <typename T>
@@ -38,9 +47,11 @@ Array<T>& Array<T>::operator=(const Array& src)
 }
 
 template <typename T>
-Array<T>::~Array()
+T& Array<T>::operator[](unsigned int i)
 {
-	delete[] _data;
+	if (i >= _len)
+		throw OutOfRange();
+	return _data[i];
 }
 
 template <typename T>
@@ -50,11 +61,9 @@ unsigned int Array<T>::size() const
 }
 
 template <typename T>
-T& Array<T>::operator[](unsigned int i)
+const char* Array<T>::OutOfRange::what(void) const throw()
 {
-	if (i >= _len)
-		throw OutOfRange();
-	return _data[i];
+	return ("The index array is out of bounds");
 }
 
 #endif

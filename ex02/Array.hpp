@@ -2,6 +2,7 @@
 #define ARRAY_HPP
 
 #include <exception>
+#include "Array.tpp"
 
 template <typename T>
 class Array
@@ -14,16 +15,17 @@ class Array
 		Array();
 		Array(unsigned int n);
 		Array(const Array& copy);
+		~Array();
+
 		Array& operator=(const Array& src);
 		T& operator[](unsigned int i);
-		~Array();
 
 		unsigned int size() const;
 
 		class OutOfRange : public std::exception
 		{
 			public:
-				virtual const char* what() const throw();
+				virtual const char* what(void) const throw();
 		}
 };
 
