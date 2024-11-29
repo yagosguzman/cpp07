@@ -2,7 +2,6 @@
 #define ARRAY_HPP
 
 #include <exception>
-#include "Array.tpp"
 
 template <typename T>
 class Array
@@ -26,7 +25,9 @@ class Array
 		{
 			public:
 				virtual const char* what(void) const throw();
-		}
+		};
 };
+
+#include "Array.tpp" // We include the .tpp file after the declaration of the class to avoid problems compiling
 
 #endif
